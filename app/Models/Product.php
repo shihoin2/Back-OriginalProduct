@@ -22,7 +22,9 @@ class Product extends Model
     protected $fillable = [
         'id',
         'name',
-        'manufacture',
+        'manufacturer',
+        'image_name',
+        'imaeg_path',
         'JDD2021_code',
         'FFPWD_code',
         'UDF_code',

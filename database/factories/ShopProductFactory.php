@@ -17,7 +17,8 @@ class ShopProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'products_id' => fake() -> numberBetween(1, 20),
+            'shops_id' => fake() -> numberBetween(1, 20),
         ];
     }
 }
