@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('address');
+            $table->float('latitude', 11, 8);
+            $table->float('longitude', 11, 8);
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('manufacture');
+            $table->string('JDD2021_code');
+            $table->string('FFPWD_code');
+            $table->string('UDF_code');
+            $table->string('SCF_code');
+            $table->foreignId('reviews_id');
             $table->timestamps();
         });
     }

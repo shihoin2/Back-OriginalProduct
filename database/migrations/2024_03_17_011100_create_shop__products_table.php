@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('shop__products', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('products_id');
+            $table->foreignId('shops_id');
             $table->timestamps();
         });
     }
