@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::prefix('MoguSearch')
+// ->name('MoguSearch.')
+// ->controller(MapController::class)
+// ->group(function () {
+//     Route::get('/test', 'test')->name('test');
+// });
+
+Route::get('/test', [MapController::class, 'test']);

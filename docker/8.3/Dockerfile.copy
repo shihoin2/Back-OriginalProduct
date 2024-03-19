@@ -3,9 +3,9 @@ FROM ubuntu:22.04
 # 追記
 COPY src/ /var/www/html/
 # 追記
-# ENV APACHE_DOCUMENT_ROOT='/var/www/public/'
-# RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-# RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+ENV APACHE_DOCUMENT_ROOT='/var/www/public/'
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 LABEL maintainer="Taylor Otwell"
 
@@ -13,7 +13,7 @@ ARG WWWGROUP
 ARG NODE_VERSION=20
 ARG POSTGRES_VERSION=15
 
-WORKDIR /var/www/html/public
+WORKDIR /var/www/html
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
@@ -78,7 +78,7 @@ COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
 # Apacheの設定ファイルを追加
-COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+COPY apache-config.conf wsl.localhost/Ubuntu/etc/apache2/sites-available/000-default.conf
 RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 8000
