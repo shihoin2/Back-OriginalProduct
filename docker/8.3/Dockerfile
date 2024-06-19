@@ -1,7 +1,8 @@
 FROM ubuntu:22.04
 # FROM php:8.3-apache
 # 追記
-COPY src/ /var/www/html/
+# COPY src/ /var/www/html/
+COPY ./ /var/www/html/
 
 LABEL maintainer="Taylor Otwell"
 
@@ -14,6 +15,7 @@ WORKDIR /var/www/html
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 ENV SUPERVISOR_PHP_COMMAND="/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan serve --host=0.0.0.0 --port=80"
+# 追記0319
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -51,7 +53,7 @@ RUN apt-get update \
     && apt-get install -y mysql-client \
     && apt-get install -y postgresql-client-$POSTGRES_VERSION \
     # 追記
-    && apt-get install -y libonig-dev libzip-dev unzip default-jre \
+    && apt-get install -y libonig-dev libzip-dev unzip \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

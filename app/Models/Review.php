@@ -10,7 +10,8 @@ class Review extends Model
 {
     use HasFactory;
 
-    public function users()
+    // public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -25,6 +26,7 @@ class Review extends Model
         'rating',
         'description',
         'user_id',
+        'product_id',
         'created_at',
         'updated_at'
     ];

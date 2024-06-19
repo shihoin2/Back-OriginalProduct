@@ -11,12 +11,14 @@ class Shop extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'shops_products', 'products_id', 'shops_id');
+        // return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'shop_products', 'shops_id', 'products_id');
     }
     protected $fillable = [
         'id',
         'name',
         'address',
+        'tel',
         'latitude',
         'longitude',
         'created_at',

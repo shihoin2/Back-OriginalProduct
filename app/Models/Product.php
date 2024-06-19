@@ -16,7 +16,8 @@ class Product extends Model
 
     public function shops()
     {
-        return $this->belongsToMany(Shop::class, 'shops_products', 'products_id', 'shops_id');
+        // return $this->belongsToMany(Shop::class);
+        return $this->belongsToMany(Shop::class, 'shop_products', 'products_id', 'shops_id');
     }
 
     protected $fillable = [

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('description')->nullable();
             $table->foreignId('user_id');
+            $table->foreignId('product_id');
             $table->timestamps();
         });
     }
