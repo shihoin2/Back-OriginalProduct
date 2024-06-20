@@ -18,3 +18,12 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Route::get('/', function () {
+//     $data = [
+//         'name' => 'John Doe',
+//         'age' => 30,
+//         'email' => 'john@example.com'
+//     ];
+//     return response()->json($data);
+// });
