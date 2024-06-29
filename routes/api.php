@@ -35,12 +35,15 @@ Route::prefix('mogu_search')
         Route::get('/shop', 'getShopMarker')->name('getShopMarker');
         Route::get('/shop/{shop_id}', 'getShopInfo')->name('getShopInfo');
         Route::get('/product/{product_id}', 'getProductInfo')->name('getProductInfo');
+        Route::post('/reviews', 'postReviewAdd')->name('postReviewAdd');
+        // Route::post('/reviews/{product_id}', 'postReviewAdd')->name('postReviewAdd');
     });
 Route::prefix('mogu_search')
     ->name('mogu_search.')
     ->controller(StaticController::class)
     ->group(function () {
         Route::post('/image', 'postImage')->name('postImage');
+        Route::post('/image/{shopId}', 'postImageShopId')->name('postImageShopId');
     });
 
     Route::get('/csrf-token', function () {
