@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            $table->integer('rating');
-            $table->text('description')->nullable();
-            $table->foreignId('user_id')->nullable();
-            $table->foreignId('product_id');
-            $table->timestamps();
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->foreignId('user_id')->nullable()->change();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->foreignId('user_id')->nullable(false)->change();
+        });
     }
 };
