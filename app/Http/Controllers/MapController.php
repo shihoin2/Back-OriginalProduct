@@ -25,7 +25,8 @@ class MapController extends Controller
     public function getShopInfo($id)
     {
         // $shop_info = Shop::with('products')->find($id);
-        $shop_info = Shop::with('products.reviews')->find($id);
+        // $shop_info = Shop::with('products.reviews')->find($id);
+        $shop_info = Shop::with('products.reviews.user')->find($id);
         if (!$shop_info) {
             return response()->json(['error' => 'Shop not found'], 404);
         }
