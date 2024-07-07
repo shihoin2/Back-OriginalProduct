@@ -50,18 +50,29 @@ class StaticController extends Controller
 
         return response()->json(['error' => 'File not uploaded'], 400);
     }
+
     public function postImageShopId(Request $request, $shopId)
     {
+
         Log::info('Request data:', $request->all());
 
         if ($request->hasFile('product_pic')) {
             $file = $request->file('product_pic');
             $fileName = $file->getClientOriginalName();
+
+            Log::info('Uploaded file info:', [
+                'original_name' => $fileName,
+                'mime_type' => $file->getClientMimeType(),
+                'size' => $file->getSize()
+            ]);
+
             if (empty($fileName)) {
                 return response()->json(['error' => 'File name cannot be empty'], 400);
             }
             $path = $file->store('uploads/product_pic', 's3');
             $url = Storage::disk('s3')->url($path);
+
+            Log::info('Stored file path:', ['path' => $path, 'url' => $url]);
 
             $product = new Product();
             $product->image_name = $fileName;
