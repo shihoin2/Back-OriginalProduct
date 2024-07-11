@@ -22,6 +22,12 @@ class MapController extends Controller
         return response()->json($shops);
     }
 
+    // public function getProductShop($id)
+    // {
+    //     $shops = Shop::find($id);
+    //     return response()->json($shops);
+    // }
+
     public function getShopInfo($id)
     {
         // $shop_info = Shop::with('products')->find($id);
@@ -36,13 +42,25 @@ class MapController extends Controller
 
     public function getProductInfo($id)
     {
-        $product_info = Product::with('reviews.user')->find($id);
+        $product_info = Product::with(['reviews.user','shops'])->find($id);
         if (!$product_info) {
             return response()->json(['error' => 'Product not found'], 404);
         }
 
         return response()->json($product_info);
     }
+
+    public function getAllProduct()
+    {
+        $product_info = Product::get();
+        if (!$product_info) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        return response()->json($product_info);
+    }
+
+
     public function postReviewAdd(Request $request)
     {
 
