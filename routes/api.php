@@ -48,8 +48,10 @@ Route::prefix('mogu_search')
         Route::post('/image/{shopId}', 'postImageShopId')->name('postImageShopId');
     });
 
-    Route::get('/csrf-token', function () {
-        return response()->json(['csrf_token' => csrf_token()]);
+    Route::middleware(['web'])->group(function () {
+        Route::get('/csrf-token', function () {
+            return response()->json(['csrf_token' => csrf_token()]);
+        });
     });
 
 // Route::get('/test', [MapController::class, 'test']);
