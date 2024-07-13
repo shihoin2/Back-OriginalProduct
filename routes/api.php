@@ -33,8 +33,9 @@ Route::prefix('mogu_search')
         // Route::put('/{id}', 'update')->name('update');
         // Route::delete('/{id}', 'destroy')->name('destroy');
         Route::get('/shop', 'getShopMarker')->name('getShopMarker');
-
+        Route::post('/shop', 'postShopInfo')->name('postShopInfo');
         Route::get('/shop/{shop_id}', 'getShopInfo')->name('getShopInfo');
+
         Route::get('/product/{product_id}', 'getProductInfo')->name('getProductInfo');
         Route::get('/product', 'getAllProduct')->name('getAllProduct');
         Route::post('/reviews', 'postReviewAdd')->name('postReviewAdd');
