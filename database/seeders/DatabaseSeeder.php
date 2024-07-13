@@ -4,7 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Shop_Product;
+// use App\Models\Shop_Product;
+use App\Models\ShopProduct;
+use App\Models\Product;
+use App\Models\Shop;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,13 +18,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            ProductSeeder::class,
-            ReviewSeeder::class,
-            ShopProductSeeder::class,
-            ShopSeeder::class
-        ]);
+        ShopProduct::truncate();
+        Product::truncate();
+        Shop::truncate();
+        Review::truncate();
+
+        // $this->call([
+        //     UserSeeder::class,
+        //     ProductSeeder::class,
+        //     ReviewSeeder::class,
+        //     ShopProductSeeder::class,
+        //     ShopSeeder::class
+        // ]);
+
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
