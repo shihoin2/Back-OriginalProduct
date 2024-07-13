@@ -82,4 +82,24 @@ class MapController extends Controller
         $review->load('user');
         return response()->json($review);
     }
+
+    public function postShopInfo(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'tel' => 'nullable|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        try {
+            $shop = Shop::create($validatedData);
+
+            return response()->json(['message' => '店舗が登録されました', 'shop' => $shop], 201);
+        } catch (\Exception $e) {
+
+            return response()->json(['message' => '店舗の登録中にエラーが発生しました', 'error' => $e->getMessage()], 500);
+        }
+    }
 }
